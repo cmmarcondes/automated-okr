@@ -1,0 +1,1 @@
+export const OBJECTIVE_MAX_LENGTH = 20;
