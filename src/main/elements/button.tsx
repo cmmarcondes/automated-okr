@@ -1,18 +1,27 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Button = styled.button`
-    width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    outline: none;
-    border: none;
-    border-radius: 6px;
+  width: 200px;
 
-    padding: 10px;
-    margin: 50px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
 
-    font-size: 18px;
-    font-weight: 600;
-    color: #28464B;
+  padding: 10px;
+  margin: 20px;
 
-    cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: #28464b;
+
+  cursor: pointer;
+
+  i {
+    margin-top: 4px;
+    font-size: 22px;
+  }
 `;

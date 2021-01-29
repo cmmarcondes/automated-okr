@@ -1,4 +1,4 @@
-type IKeyResult = {
+export type IKeyResult = {
         name: string,
         howitscalculated: string,
         information: string,

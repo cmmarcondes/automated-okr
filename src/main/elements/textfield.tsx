@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const TextField = styled.input`
+    position: relative;
+
     width: 400px;
     outline: none;
 
@@ -26,5 +28,17 @@ export const TextField = styled.input`
     &:focus {
         border-bottom: 2px solid white;
         transition: ease-in-out 0.2s;
+    }
+
+    span {
+        .delete {
+            position: absolute;
+
+            right: 0;
+            height: 100%;
+            
+            background-color: red;
+            color: white;
+        }
     }
 `;
