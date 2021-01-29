@@ -20,6 +20,11 @@ export const Button = styled.button`
 
   cursor: pointer;
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   i {
     margin-top: 4px;
     font-size: 22px;

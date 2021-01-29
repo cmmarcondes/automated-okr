@@ -1,10 +1,13 @@
-import { addNewKR, getNewKrName } from "main/store/actions/datas";
-import { IKeyResult, IOkr } from "main/store/protocol";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
+
 import { Button, Container, TextField, Title } from "../../elements";
+
+import { KR_ARRAY_MAX_LENGTH } from "main/helpers/contants";
+import { addNewKR, getNewKrName } from "main/store/actions/datas";
+import { IKeyResult, IOkr } from "main/store/protocol";
 
 const mapStateToProps = (state: { datas: IOkr }) => {
   return {
@@ -39,6 +42,11 @@ const Keyresults: React.FC<PropsFromRedux> = ({
     history.push("/details");
   };
 
+  const verifyEmptyDatas = () => {
+    return datas.kr.map((d) => d.name === "")
+                   .some((verify) => verify === true);
+  };
+
   return (
     <>
       <Container>
@@ -54,10 +62,18 @@ const Keyresults: React.FC<PropsFromRedux> = ({
           </>
         ))}
         <div className="wrapper__buttons">
-          <Button type="button" onClick={() => dispatchAddNewKr(datas.kr)}>
+          <Button
+            type="button"
+            onClick={() => dispatchAddNewKr(datas.kr)}
+            disabled={datas.kr.length > KR_ARRAY_MAX_LENGTH}
+          >
             create new key result
           </Button>
-          <Button type="button" onClick={nextStep}>
+          <Button
+            type="button"
+            onClick={nextStep}
+            disabled={verifyEmptyDatas()}
+          >
             next step&nbsp;
             <i className="fas fa-long-arrow-alt-right"></i>
           </Button>

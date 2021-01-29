@@ -1,14 +1,20 @@
 import React from "react";
-import { connect, ConnectedProps } from "react-redux";
-import { Button, Container, TextField, Title } from "../../elements";
-import { OBJECTIVE_MAX_LENGTH, OBJECTIVE_MIN_LENGTH } from "../../helpers/contants";
-import ObjectiveArrow from "../../assets/Objective-Arrow.png";
 import { useHistory } from "react-router-dom";
+import { Dispatch } from "redux";
+import { connect, ConnectedProps } from "react-redux";
+
 import { getNewGoal } from "main/store/actions/datas";
 import { IOkr } from "main/store/protocol";
-import { Dispatch } from "redux";
 
-const mapStateToProps = (state: { datas: IOkr; }) => {
+import { Button, Container, TextField, Title } from "../../elements";
+import {
+  NAME_MIN_LENGTH,
+  OBJECTIVE_MAX_LENGTH,
+  OBJECTIVE_MIN_LENGTH,
+} from "../../helpers/contants";
+import ObjectiveArrow from "../../assets/Objective-Arrow.png";
+
+const mapStateToProps = (state: { datas: IOkr }) => {
   return {
     datas: state.datas.objective,
   };
@@ -39,13 +45,13 @@ const Goals: React.FC<PropsFromRedux> = ({ datas, getGoal }) => {
       <Title>Tell us, what is your objective?</Title>
       <TextField
         placeholder="type here..."
-        name="objective"
+        name="goal"
         maxLength={OBJECTIVE_MAX_LENGTH}
         minLength={OBJECTIVE_MIN_LENGTH}
         value={datas.goal}
         onChange={(e) => getGoal(e.target.value)}
       />
-      <Button type="button" onClick={nextStep}>
+      <Button type="submit" onClick={nextStep} disabled={datas.goal.length < NAME_MIN_LENGTH}>
         next step&nbsp;
         <i className="fas fa-long-arrow-alt-right"></i>
       </Button>

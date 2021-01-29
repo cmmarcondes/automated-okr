@@ -1,3 +1,10 @@
+import React from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Dispatch } from "redux";
+
+import { Button, Container, TextField, Title } from "../../elements";
+
 import {
   getNewKrAtt,
   getNewKrCalc,
@@ -5,11 +12,6 @@ import {
   getNewKrTarget,
 } from "main/store/actions/datas";
 import { IKeyResult, IOkr } from "main/store/protocol";
-import React from "react";
-import { connect, ConnectedProps } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Dispatch } from "redux";
-import { Button, Container, Label, TextField } from "../../elements";
 
 const mapStateToProps = (state: { datas: IOkr }) => {
   return {
@@ -50,7 +52,7 @@ const Details: React.FC<PropsFromRedux> = ({
   dispatchNewKrCalc,
   dispatchNewKrAtt,
   dispatchNewKrInfo,
-  dispatchNewKrTarget
+  dispatchNewKrTarget,
 }) => {
   const history = useHistory();
 
@@ -58,43 +60,42 @@ const Details: React.FC<PropsFromRedux> = ({
     history.push("/details");
   };
 
-  console.log(datas)
-
   return (
     <>
       <Container>
-        {datas.kr?.map((kr_datas: IKeyResult, index: number) => {
-          return (
-            <>
-              <Label>{kr_datas.name}</Label>
-              <TextField
-                placeholder={`how are you going to calculate this key result?`}
-                onChange={(e) =>
-                  dispatchNewKrCalc(datas.kr, e.target.value, index)
-                }
-              />
-              <TextField
-                placeholder={`what is the source of information?`}
-                onChange={(e) =>
-                  dispatchNewKrInfo(datas.kr, e.target.value, index)
-                }
-              />
-              <TextField
-                placeholder={`what frequence do you wanna att this key result?`}
-                onChange={(e) =>
-                  dispatchNewKrAtt(datas.kr, e.target.value, index)
-                }
-              />
-              <TextField
-                placeholder={`what is the target?`}
-                onChange={(e) =>
-                  dispatchNewKrTarget(datas.kr, e.target.value, index)
-                }
-              />
-            </>
-          );
-        })}
-
+        
+          {datas.kr?.map((kr_datas: IKeyResult, index: number) => {
+            return (
+              <div className="wrapper">
+                <Title>{kr_datas.name}</Title>
+                <br />
+                <TextField
+                  placeholder={`how are you going to calculate this key result?`}
+                  onChange={(e) =>
+                    dispatchNewKrCalc(datas.kr, e.target.value, index)
+                  }
+                />
+                <TextField
+                  placeholder={`what is the source of information?`}
+                  onChange={(e) =>
+                    dispatchNewKrInfo(datas.kr, e.target.value, index)
+                  }
+                />
+                <TextField
+                  placeholder={`what frequence do you wanna att this key result?`}
+                  onChange={(e) =>
+                    dispatchNewKrAtt(datas.kr, e.target.value, index)
+                  }
+                />
+                <TextField
+                  placeholder={`what is the target?`}
+                  onChange={(e) =>
+                    dispatchNewKrTarget(datas.kr, e.target.value, index)
+                  }
+                />
+              </div>
+            );
+          })}
         <Button type="button" onClick={nextStep}>
           next step
         </Button>
