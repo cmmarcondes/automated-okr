@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Button } from "../../elements/button";
-import { Container } from "../../elements/container";
-import { TextField } from "../../elements/textfield";
+import { useHistory } from "react-router-dom";
+import { Button, Container, TextField } from "../../elements";
 
 const Keyresults = () => {
+  const history = useHistory();
   const [KR, setKR] = useState([
     {
       key_result_name: "",
     },
   ]);
 
+  const nextStep = () => {
+    history.push("/details");
+  };
   const createNewKr = () => {
     const newKR = [...KR];
     newKR.push({
@@ -24,7 +27,14 @@ const Keyresults = () => {
         {KR.map((input, index) => (
           <TextField placeholder={`digite a key result ${index}`} />
         ))}
-        <Button type="button" onClick={createNewKr}>create new key result</Button>
+        <div>
+          <Button type="button" onClick={createNewKr}>
+            create new key result
+          </Button>
+          <Button type="button" onClick={nextStep}>
+            next step
+          </Button>
+        </div>
       </Container>
     </>
   );

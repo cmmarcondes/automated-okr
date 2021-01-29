@@ -10,4 +10,5 @@ export const Container = styled.div`
     height: 100vh;
 
     background-color: #28464B;
+
 `;

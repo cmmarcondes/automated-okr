@@ -3,14 +3,24 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Keyresults from "./main/pages/keyresults";
+import Descriptions from "./main/pages/descriptions";
+import Details from "./main/pages/details";
+import { Provider } from 'react-redux';
+import config from './main/store/config';
+
+const store = config();
+
 
 ReactDOM.render(
-  <Router>
+  <Provider store={store}>
+    <Router>
     <Switch>
       <Route path="/" exact component={App} />
-      <Route path="/key-results" exact component={Keyresults} />
+      <Route path="/descriptions" exact component={Descriptions} />
+      <Route path="/details" exact component={Details} />
     </Switch>
-  </Router>,
+  </Router>
+  </Provider>
+  ,
   document.getElementById("root")
 );
