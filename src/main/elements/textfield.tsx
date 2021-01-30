@@ -10,7 +10,7 @@ export const TextField = styled.input`
     padding: 10px;
 
     border: none;
-    border-bottom: 2px solid #42D9C8;
+    border-bottom: 2px solid #42d9c8;
 
     font-size: 20px;
     letter-spacing: 2px;
@@ -36,7 +36,7 @@ export const TextField = styled.input`
 
             right: 0;
             height: 100%;
-            
+
             background-color: red;
             color: white;
         }

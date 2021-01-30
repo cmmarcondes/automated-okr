@@ -8,6 +8,6 @@ export const DropDown = styled.div`
     h1 {
         font-size: 32px;
         font-family: Arial, Helvetica, sans-serif;
-        color: #2C8C99;
+        color: #2c8c99;
     }
 `;

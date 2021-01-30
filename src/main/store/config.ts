@@ -1,13 +1,12 @@
-import { createStore, combineReducers } from "redux";
-import { dataReducer } from "./reducers/datasReducer";
+import { createStore, combineReducers } from 'redux';
+import { dataReducer } from './reducers/datasReducer';
 
 const reducers = combineReducers({
-  datas: dataReducer
-  },
-);
+    datas: dataReducer,
+});
 
 function config() {
-  return createStore(reducers);
+    return createStore(reducers);
 }
 
 export default config;
