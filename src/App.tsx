@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Goals from './main/components/goals/goals';
+import Goals from './main/pages/goals';
 
-function App() {
+const App = () => {
   return (
     <>
     <Goals />
