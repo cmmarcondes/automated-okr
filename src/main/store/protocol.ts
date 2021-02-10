@@ -1,4 +1,5 @@
 export type IKeyResult = {
+  active: boolean;
   name: string;
   howitscalculated: string;
   information: string;
@@ -6,7 +7,7 @@ export type IKeyResult = {
   target: string;
   currentvalue: string;
   progress: string;
-  [key: string]: string;
+  [key: string]: string | boolean;
 };
 
 export interface IOkr {

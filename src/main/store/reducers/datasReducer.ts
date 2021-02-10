@@ -4,6 +4,7 @@ import { IOkr } from 'main/store/protocol';
 
 export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
   const krInitialState = {
+    active: false,
     name: '',
     howitscalculated: '',
     information: '',
@@ -30,6 +31,15 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
+    case ActionCreators.NEW_KR_ACTIVE:
+      return {
+        ...state,
+        objective: {
+          goal: state.objective.goal,
+          kr: action.payload,
+        },
+      };
+
     case ActionCreators.NEW_KR_NAME:
       return {
         ...state,

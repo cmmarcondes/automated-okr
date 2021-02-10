@@ -7,6 +7,16 @@ export const getNewGoal = (newGoal: string) => ({
   payload: newGoal,
 });
 
+export const getNewKrActive = (KrArray: IKeyResult[], index = 0) => {
+  // eslint-disable-next-line no-return-assign
+  KrArray.forEach((kr) => (kr.active = false));
+  KrArray[index].active = true;
+  return {
+    type: ActionCreators.NEW_KR_ACTIVE,
+    payload: KrArray,
+  };
+};
+
 export const getNewKrName = (
   KrArray: IKeyResult[],
   newKrName: string,

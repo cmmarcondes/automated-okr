@@ -35,26 +35,6 @@ export const Container = styled.div`
     width: 100%;
   }
 
-  .tab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 3px;
-
-    width: 20%;
-
-    background-color: transparent;
-
-    border-radius: 10px 10px 0 0;
-
-    &:first-child {
-      background-color: #edebeb;
-    }
-  }
-
   .dashboard {
     &__container {
       position: absolute;
@@ -65,18 +45,15 @@ export const Container = styled.div`
       bottom: 0;
 
       padding: 20px 20px 0px 20px;
-
-      background-color: white;
-
-      border-radius: 10px 10px 0 0;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     &__content {
       width: 100%;
       height: 88%;
 
-      background-color: #edebeb;
+      background-color: white;
+
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     &__wrapper {
