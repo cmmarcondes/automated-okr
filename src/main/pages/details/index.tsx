@@ -11,7 +11,7 @@ import {
   getNewKrTarget,
 } from 'main/store/actions/datas';
 import { IKeyResult, IOkr } from 'main/store/protocol';
-import { Button, Container, TextField, Title } from '../../elements';
+import { Button, Container, TextField, Title } from 'main/elements';
 
 const mapStateToProps = (state: { datas: IOkr }) => ({
   datas: state.datas.objective,
@@ -53,7 +53,7 @@ const Details: React.FC<PropsFromRedux> = ({
   const history = useHistory();
 
   const nextStep = () => {
-    history.push('/details');
+    history.push('/dashboard');
   };
 
   return (
@@ -89,8 +89,9 @@ const Details: React.FC<PropsFromRedux> = ({
             />
           </div>
         ))}
-        <Button type="button" onClick={nextStep}>
-          next step
+        <Button className="next-step" type="button" onClick={nextStep}>
+          next step&nbsp;
+          <i className="fas fa-long-arrow-alt-right" />
         </Button>
       </Container>
     </>

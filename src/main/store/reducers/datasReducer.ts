@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ActionCreators } from 'main/helpers/enum';
-import { IOkr } from '../protocol';
+import { IOkr } from 'main/store/protocol';
 
 export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
   const krInitialState = {

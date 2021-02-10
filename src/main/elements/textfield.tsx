@@ -12,7 +12,7 @@ export const TextField = styled.input`
   border: none;
   border-bottom: 2px solid #42d9c8;
 
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 2px;
   font-weight: lighter;
   color: white;

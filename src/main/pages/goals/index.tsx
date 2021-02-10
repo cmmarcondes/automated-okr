@@ -10,10 +10,10 @@ import {
   NAME_MIN_LENGTH,
   OBJECTIVE_MAX_LENGTH,
   OBJECTIVE_MIN_LENGTH,
-} from '../../helpers/contants';
+} from 'main/helpers/contants';
 
-import { Button, Container, TextField, Title } from '../../elements';
-import ObjectiveArrow from '../../assets/Objective-Arrow.png';
+import { Button, Container, TextField, Title } from 'main/elements';
+import ObjectiveArrow from 'main/assets/Objective-Arrow.png';
 
 const mapStateToProps = (state: { datas: IOkr }) => ({
   datas: state.datas.objective,
@@ -48,14 +48,17 @@ const Goals: React.FC<PropsFromRedux> = ({ datas, getGoal }) => {
         value={datas.goal}
         onChange={(e) => getGoal(e.target.value)}
       />
-      <Button
-        type="submit"
-        onClick={nextStep}
-        disabled={datas.goal.length < NAME_MIN_LENGTH}
-      >
-        next step&nbsp;
-        <i className="fas fa-long-arrow-alt-right" />
-      </Button>
+      <div className="button-container">
+        <Button
+          className="next-step"
+          type="submit"
+          onClick={nextStep}
+          disabled={datas.goal.length < NAME_MIN_LENGTH}
+        >
+          next step&nbsp;
+          <i className="fas fa-long-arrow-alt-right" />
+        </Button>
+      </div>
     </Container>
   );
 };
