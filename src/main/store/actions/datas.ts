@@ -79,6 +79,7 @@ export const getNewKrTarget = (
 
 export const addNewKR = (newKR: IKeyResult[]) => {
   newKR.push({
+    active: false,
     name: '',
     howitscalculated: '',
     information: '',
