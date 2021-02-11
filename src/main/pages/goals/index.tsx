@@ -1,11 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Dispatch } from 'redux';
-import { connect, ConnectedProps } from 'react-redux';
 
-import { getNewGoal } from 'main/store/actions/datas';
-import { IOkr } from 'main/store/protocol';
-
+import { connector, PropsFromRedux } from 'main/helpers/connector';
 import {
   NAME_MIN_LENGTH,
   OBJECTIVE_MAX_LENGTH,
@@ -13,23 +9,10 @@ import {
 } from 'main/helpers/contants';
 
 import { Button, Container, TextField, Title } from 'main/elements';
+
 import ObjectiveArrow from 'main/assets/Objective-Arrow.png';
 
-const mapStateToProps = (state: { datas: IOkr }) => ({
-  datas: state.datas.objective,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getGoal(newGoal: string) {
-    const action = getNewGoal(newGoal);
-    dispatch(action);
-  },
-});
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-const Goals: React.FC<PropsFromRedux> = ({ datas, getGoal }) => {
+const Goals: React.FC<PropsFromRedux> = ({ datas, dispatchNewGoal }) => {
   const history = useHistory();
 
   const nextStep = () => {
@@ -46,7 +29,7 @@ const Goals: React.FC<PropsFromRedux> = ({ datas, getGoal }) => {
         maxLength={OBJECTIVE_MAX_LENGTH}
         minLength={OBJECTIVE_MIN_LENGTH}
         value={datas.goal}
-        onChange={(e) => getGoal(e.target.value)}
+        onChange={(e) => dispatchNewGoal(e.target.value)}
       />
       <div className="button-container">
         <Button

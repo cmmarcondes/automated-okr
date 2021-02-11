@@ -10,8 +10,8 @@ export const DashboardTitle = styled(Title)`
   position: absolute;
   top: 0;
   left: 0;
-  margin-left: 100px;
+  margin-left: 30px;
 
-  font-size: 180px;
+  font-size: 140px;
   font-weight: bolder;
 `;

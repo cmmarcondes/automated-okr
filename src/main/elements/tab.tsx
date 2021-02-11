@@ -19,9 +19,14 @@ export const Tab = styled.div<IActiveTab>`
   background-color: white;
   opacity: ${({ active }) => (active ? '1' : '0.6')};
 
+  transition: all 0.2s ease-in-out;
+
   cursor: pointer;
 
   &:hover {
     background-color: white;
+    opacity: 1;
+
+    transition: all 0.2s ease-in-out;
   }
 `;

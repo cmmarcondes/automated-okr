@@ -40,7 +40,7 @@ export const Container = styled.div`
       position: absolute;
 
       height: 60%;
-      width: 80%;
+      width: 90%;
 
       bottom: 0;
 

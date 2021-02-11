@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 interface ITab {
+  children?: React.ReactChild;
   index: number;
 }
 type PropsFromRedux = ConnectedProps<typeof connector> & ITab;

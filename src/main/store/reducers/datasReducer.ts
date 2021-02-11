@@ -1,10 +1,10 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { ActionCreators } from 'main/helpers/enum';
+import { ACTIONCREATORS } from 'main/helpers/enum';
 import { IOkr } from 'main/store/protocol';
 
 export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
   const krInitialState = {
-    active: false,
+    active: true,
     name: '',
     howitscalculated: '',
     information: '',
@@ -15,7 +15,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
   };
 
   switch (action.type) {
-    case ActionCreators.NEW_GOAL:
+    case ACTIONCREATORS.NEW_GOAL:
       return {
         ...state,
         objective: {
@@ -23,7 +23,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: state.objective.kr,
         },
       };
-    case ActionCreators.ADD_NEW_KR:
+    case ACTIONCREATORS.ADD_NEW_KR:
       return {
         ...state,
         objective: {
@@ -31,7 +31,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
-    case ActionCreators.NEW_KR_ACTIVE:
+    case ACTIONCREATORS.NEW_KR_ACTIVE:
       return {
         ...state,
         objective: {
@@ -40,7 +40,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
         },
       };
 
-    case ActionCreators.NEW_KR_NAME:
+    case ACTIONCREATORS.NEW_KR_NAME:
       return {
         ...state,
         objective: {
@@ -48,7 +48,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
-    case ActionCreators.NEW_KR_HOWITSCALCULATED:
+    case ACTIONCREATORS.NEW_KR_HOWITSCALCULATED:
       return {
         ...state,
         objective: {
@@ -56,7 +56,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
-    case ActionCreators.NEW_KR_INFORMATION:
+    case ACTIONCREATORS.NEW_KR_INFORMATION:
       return {
         ...state,
         objective: {
@@ -64,7 +64,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
-    case ActionCreators.NEW_KR_ATT:
+    case ACTIONCREATORS.NEW_KR_ATT:
       return {
         ...state,
         objective: {
@@ -72,7 +72,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
           kr: action.payload,
         },
       };
-    case ActionCreators.NEW_KR_TARGET:
+    case ACTIONCREATORS.NEW_KR_TARGET:
       return {
         ...state,
         objective: {

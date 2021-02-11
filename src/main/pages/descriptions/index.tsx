@@ -1,12 +1,13 @@
+/* eslint-disable react/jsx-curly-newline */
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Dispatch } from 'redux';
 
+import { connector, PropsFromRedux } from 'main/helpers/connector';
 import { verifyEmptyDatas } from 'main/helpers/functionUtils';
 import { KR_ARRAY_MAX_LENGTH } from 'main/helpers/contants';
-import { addNewKR, getNewKrName } from 'main/store/actions/datas';
-import { IKeyResult, IOkr } from 'main/store/protocol';
+import { ACTIONCREATORS } from 'main/helpers/enum';
+
+import { IKeyResult } from 'main/store/protocol';
 
 import {
   Button,
@@ -16,28 +17,10 @@ import {
   Title,
 } from 'main/elements';
 
-const mapStateToProps = (state: { datas: IOkr }) => ({
-  datas: state.datas.objective,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchAddNewKr(newKr: IKeyResult[]) {
-    const action = addNewKR(newKr);
-    dispatch(action);
-  },
-  dispatchNewKrName(KrArray: IKeyResult[], newKrName: string, index: number) {
-    const action = getNewKrName(KrArray, newKrName, index);
-    dispatch(action);
-  },
-});
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
 const Keyresults: React.FC<PropsFromRedux> = ({
   datas,
   dispatchAddNewKr,
-  dispatchNewKrName,
+  dispatchNewKrInfo,
 }) => {
   const history = useHistory();
 
@@ -51,8 +34,17 @@ const Keyresults: React.FC<PropsFromRedux> = ({
         <Title>How do you want to achieve this goal?</Title>
         {datas.kr?.map((input: IKeyResult, index: number) => (
           <TextField
+            name="name"
             placeholder={`type the key result ${index + 1}`}
-            onChange={(e) => dispatchNewKrName(datas.kr, e.target.value, index)}
+            onChange={(e) =>
+              dispatchNewKrInfo(
+                datas.kr,
+                e.target.value,
+                index,
+                ACTIONCREATORS.NEW_KR_NAME,
+                e.target.name,
+              )
+            }
           />
         ))}
         <div className="wrapper__buttons">

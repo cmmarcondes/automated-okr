@@ -1,16 +1,12 @@
-import TabComponent from 'main/components/TabComponent';
-import { DashboardTitle, Container } from 'main/elements';
-import { IOkr } from 'main/store/protocol';
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 
-const mapStateToProps = (state: { datas: IOkr }) => ({
-  datas: state.datas.objective,
-});
+import TabComponent from 'main/components/TabComponent';
+import TargetComponent from 'main/components/TargetComponent';
+import { DashboardTitle, Container } from 'main/elements';
 
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
+import { connector, PropsFromRedux } from 'main/helpers/connector';
 
 const Dashboard: React.FC<PropsFromRedux> = ({ datas }) => (
   <Container>
@@ -23,7 +19,17 @@ const Dashboard: React.FC<PropsFromRedux> = ({ datas }) => (
           </TabComponent>
         ))}
       </div>
-      <div className="dashboard__content" />
+      <div className="dashboard__content">
+        {datas.kr.map((keyResult) =>
+          keyResult.active ? (
+            <TargetComponent key={keyResult.name}>
+              {keyResult.target}
+            </TargetComponent>
+          ) : (
+            <></>
+          ),
+        )}
+      </div>
     </div>
   </Container>
 );

@@ -1,4 +1,4 @@
-export enum ActionCreators {
+export enum ACTIONCREATORS {
   NEW_GOAL = 'NEW_GOAL',
   ADD_NEW_KR = 'ADD_NEW_KR',
   NEW_KR_ACTIVE = 'NEW_KR_ACTIVE',
