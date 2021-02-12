@@ -1,4 +1,9 @@
-import { addNewKR, getNewGoal, getNewKrInfo } from 'main/store/actions/datas';
+import {
+  addNewKR,
+  getNewGoal,
+  getNewKrActive,
+  getNewKrInfo,
+} from 'main/store/actions/datas';
 import { IKeyResult, IOkr } from 'main/store/protocol';
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -14,6 +19,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
   dispatchAddNewKr(newKr: IKeyResult[]) {
     const action = addNewKR(newKr);
+    dispatch(action);
+  },
+  dispatchNewKrActive(KrArray: IKeyResult[], index: number) {
+    const action = getNewKrActive(KrArray, index);
     dispatch(action);
   },
   dispatchNewKrInfo(

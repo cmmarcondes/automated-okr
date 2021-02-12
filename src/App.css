@@ -5,3 +5,37 @@
 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #192b2f;
+}
+::-webkit-scrollbar-track {
+  background: #253d41;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #253d41;
+}
+::-webkit-scrollbar-track:active {
+  background: #253d41;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

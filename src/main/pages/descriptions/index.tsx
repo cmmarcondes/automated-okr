@@ -28,6 +28,10 @@ const Keyresults: React.FC<PropsFromRedux> = ({
     history.push('/details');
   };
 
+  const prevStep = () => {
+    history.push('/');
+  };
+
   return (
     <>
       <Container>
@@ -47,15 +51,21 @@ const Keyresults: React.FC<PropsFromRedux> = ({
             }
           />
         ))}
-        <div className="wrapper__buttons">
-          <CreateKrButton
-            className="create-button"
-            type="button"
-            onClick={() => dispatchAddNewKr(datas.kr)}
-            disabled={datas.kr.length > KR_ARRAY_MAX_LENGTH}
-          >
-            <i className="fas fa-plus" />
-          </CreateKrButton>
+
+        <CreateKrButton
+          className="create-button"
+          type="button"
+          onClick={() => dispatchAddNewKr(datas.kr)}
+          disabled={datas.kr.length > KR_ARRAY_MAX_LENGTH}
+        >
+          <i className="fas fa-plus" />
+        </CreateKrButton>
+
+        <div className="button-container">
+          <Button className="next-step" type="button" onClick={prevStep}>
+            <i className="fas fa-long-arrow-alt-left" />
+            &nbsp;prev step
+          </Button>
           <Button
             className="next-step"
             type="button"
