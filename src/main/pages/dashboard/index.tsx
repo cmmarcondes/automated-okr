@@ -3,10 +3,12 @@
 import React from 'react';
 
 import TabComponent from 'main/components/TabComponent';
-import TargetComponent from 'main/components/TargetComponent';
 import { DashboardTitle, Container } from 'main/elements';
 
 import { connector, PropsFromRedux } from 'main/helpers/connector';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import DashboardContentComponent from 'main/components/DashboardContentComponent';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Dashboard: React.FC<PropsFromRedux> = ({ datas }) => (
   <Container>
@@ -20,11 +22,24 @@ const Dashboard: React.FC<PropsFromRedux> = ({ datas }) => (
         ))}
       </div>
       <div className="dashboard__content">
-        {datas.kr.map((keyResult) =>
+        {datas.kr.map((keyResult, index) =>
           keyResult.active ? (
-            <TargetComponent key={keyResult.name}>
-              {keyResult.target}
-            </TargetComponent>
+            <>
+              <DashboardContentComponent index={index} />
+              {/*               <TargetComponent key={keyResult.name}>
+                {keyResult.target}
+              </TargetComponent> */}
+              <div className="current_value">
+                <CircularProgressbar
+                  value={+keyResult.currentvalue}
+                  maxValue={keyResult.target}
+                  text={`${
+                    (+keyResult.currentvalue / keyResult.target) * 100 || 0
+                  }`}
+                  strokeWidth={2}
+                />
+              </div>
+            </>
           ) : (
             <></>
           ),

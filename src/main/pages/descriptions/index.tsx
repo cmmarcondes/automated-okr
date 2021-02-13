@@ -38,8 +38,9 @@ const Keyresults: React.FC<PropsFromRedux> = ({
         <Title>How do you want to achieve this goal?</Title>
         {datas.kr?.map((input: IKeyResult, index: number) => (
           <TextField
+            required
+            label={`Key Result ${index + 1}`}
             name="name"
-            placeholder={`type the key result ${index + 1}`}
             onChange={(e) =>
               dispatchNewKrInfo(
                 datas.kr,

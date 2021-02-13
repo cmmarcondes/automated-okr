@@ -24,7 +24,8 @@ const Goals: React.FC<PropsFromRedux> = ({ datas, dispatchNewGoal }) => {
       <img src={ObjectiveArrow} alt="Objective Arrow for OKR" width="150px" />
       <Title>Tell us, what is your objective?</Title>
       <TextField
-        placeholder="type here..."
+        required
+        label="Goal"
         name="goal"
         maxLength={OBJECTIVE_MAX_LENGTH}
         minLength={OBJECTIVE_MIN_LENGTH}

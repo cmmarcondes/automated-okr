@@ -1,44 +1,85 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React from 'react';
 import styled from 'styled-components';
 
-export const TextField = styled.input`
-  position: relative;
+interface IVariant
+  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  label: string;
+  secondary?: boolean;
+}
 
-  width: 400px;
-  outline: none;
+interface IColor {
+  color?: string;
+}
 
-  margin-top: 20px;
-  padding: 10px;
+const Container = styled.div<IColor>`
+  .block {
+    position: relative;
 
-  border: none;
-  border-bottom: 2px solid #42d9c8;
+    input {
+      width: 100%;
 
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: lighter;
-  color: white;
-  text-align: center;
+      margin-top: 30px;
+      padding: 10px;
 
-  background-color: transparent;
+      font-size: 18px;
+      font-weight: lighter;
+      letter-spacing: 2px;
+      color: ${({ color }) => color || '#160c28'};
 
-  &::placeholder {
-    color: white;
-    font-weight: lighter;
-  }
+      background-color: transparent;
 
-  &:focus {
-    border-bottom: 2px solid white;
-    transition: ease-in-out 0.2s;
-  }
+      outline: none;
+      border: none;
+      border-bottom: 2px solid ${({ color }) => color || '#160c28'};
 
-  span {
-    .delete {
+      &:focus ~ label,
+      &:disabled ~ label,
+      &:valid ~ label {
+        bottom: 40px;
+        transition: 0.5s;
+
+        color: #8e5572;
+      }
+
+      &:focus,
+      &:disabled,
+      &:valid {
+        border-bottom: 2px solid #8e5572;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    label {
+      color: ${({ color }) => color || '#8e8e8e'};
+
       position: absolute;
 
-      right: 0;
-      height: 100%;
+      left: 5px;
+      bottom: 10px;
 
-      background-color: red;
-      color: white;
+      pointer-events: none;
+
+      transition: 0.3s;
+
+      font-size: 18px;
+
+      white-space: nowrap;
     }
   }
 `;
+
+const TextField: React.FC<IVariant> = ({ label, ...props }) => (
+  <Container color={props.color}>
+    <div className="block">
+      <input {...props} />
+      <label>{label}</label>
+    </div>
+  </Container>
+);
+
+export { TextField };

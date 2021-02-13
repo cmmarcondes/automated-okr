@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  background-color: #28464b;
+  background-color: #f2f7f2;
 
   .details-container {
     display: flex;
@@ -34,8 +34,7 @@ export const Container = styled.div`
 
     width: 90%;
 
-    background-color: #121e20;
-    opacity: 0.3;
+    background-color: #160c28;
 
     padding: 20px;
     margin: 10px;
@@ -51,6 +50,10 @@ export const Container = styled.div`
 
       width: 50%;
     }
+  }
+  .current_value {
+    width: 100px;
+    height: 100px;
   }
 
   .button-container {
@@ -77,7 +80,9 @@ export const Container = styled.div`
       width: 100%;
       height: 88%;
 
-      background-color: white;
+      padding: 0 20px;
+
+      background-color: #160c28;
 
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }

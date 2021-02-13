@@ -9,7 +9,7 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
     howitscalculated: '',
     information: '',
     att: '',
-    target: '',
+    target: 0,
     currentvalue: '',
     progress: '',
   };
@@ -65,6 +65,14 @@ export const dataReducer = (state: IOkr, action: PayloadAction<IOkr>) => {
         },
       };
     case ACTIONCREATORS.NEW_KR_ATT:
+      return {
+        ...state,
+        objective: {
+          goal: state.objective.goal,
+          kr: action.payload,
+        },
+      };
+    case ACTIONCREATORS.NEW_KR_CURRENT_VALUE:
       return {
         ...state,
         objective: {

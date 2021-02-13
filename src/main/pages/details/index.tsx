@@ -32,8 +32,10 @@ const Details: React.FC<PropsFromRedux> = ({ datas, dispatchNewKrInfo }) => {
               <br />
               <div className="wrapper__content">
                 <TextField
+                  required
+                  color="#F1E3D3"
+                  label="How it is calculated"
                   name="howitscalculated"
-                  placeholder="how are you going to calculate this key result?"
                   onChange={(e) =>
                     dispatchNewKrInfo(
                       datas.kr,
@@ -45,8 +47,10 @@ const Details: React.FC<PropsFromRedux> = ({ datas, dispatchNewKrInfo }) => {
                   }
                 />
                 <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Information"
                   name="information"
-                  placeholder="what is the source of information?"
                   onChange={(e) =>
                     dispatchNewKrInfo(
                       datas.kr,
@@ -61,8 +65,10 @@ const Details: React.FC<PropsFromRedux> = ({ datas, dispatchNewKrInfo }) => {
 
               <div className="wrapper__content">
                 <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Frequence of attualization"
                   name="att"
-                  placeholder="what frequence do you wanna att this key result?"
                   onChange={(e) =>
                     dispatchNewKrInfo(
                       datas.kr,
@@ -74,8 +80,10 @@ const Details: React.FC<PropsFromRedux> = ({ datas, dispatchNewKrInfo }) => {
                   }
                 />
                 <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Target"
                   name="target"
-                  placeholder="what is the target?"
                   onChange={(e) =>
                     dispatchNewKrInfo(
                       datas.kr,

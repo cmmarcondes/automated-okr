@@ -39,7 +39,7 @@ export const addNewKR = (newKR: IKeyResult[]) => {
     howitscalculated: '',
     information: '',
     att: '',
-    target: '',
+    target: 0,
     currentvalue: '',
     progress: '',
   });

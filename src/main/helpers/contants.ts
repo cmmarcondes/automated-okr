@@ -14,6 +14,7 @@ interface IActionCreators {
   NEW_KR_PROGRESS: string;
   [key: string]: string | boolean;
 }
+
 export const ActionCreators: IActionCreators = {
   NEW_KR_NAME: 'NEW_KR_NAME',
   NEW_KR_HOWITSCALCULATED: 'NEW_KR_HOWITSCALCULATED',
@@ -22,4 +23,8 @@ export const ActionCreators: IActionCreators = {
   NEW_KR_TARGET: 'NEW_KR_TARGET',
   NEW_KR_CURRENT_VALUE: 'NEW_KR_CURRENT_VALUE',
   NEW_KR_PROGRESS: 'NEW_KR_PROGRESS',
+};
+
+export const DEFAULT_COLOR = {
+  primary: '#693668',
 };

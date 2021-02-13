@@ -4,10 +4,10 @@ export type IKeyResult = {
   howitscalculated: string;
   information: string;
   att: string;
-  target: string;
+  target: number;
   currentvalue: string;
   progress: string;
-  [key: string]: string | boolean;
+  [key: string]: string | boolean | number;
 };
 
 export interface IOkr {

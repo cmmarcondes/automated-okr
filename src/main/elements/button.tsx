@@ -19,7 +19,9 @@ export const Button = styled.button<IButton>`
 
   font-size: 18px;
   font-weight: 600;
-  color: #28464b;
+  color: #8e5572;
+
+  background-color: #160c28;
 
   cursor: pointer;
 
@@ -46,7 +48,7 @@ export const CreateKrButton = styled(Button)`
   margin: 20px;
 
   font-weight: 600;
-  color: #28464b;
+  color: #8e5572;
 
   cursor: pointer;
 
