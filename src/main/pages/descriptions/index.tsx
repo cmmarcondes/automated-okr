@@ -1,36 +1,26 @@
+/* eslint-disable react/jsx-curly-newline */
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Dispatch } from 'redux';
 
-import { KR_ARRAY_MAX_LENGTH } from '../../helpers/contants';
-import { addNewKR, getNewKrName } from '../../store/actions/datas';
-import { IKeyResult, IOkr } from '../../store/protocol';
+import { connector, PropsFromRedux } from 'main/helpers/connector';
+import { verifyEmptyDatas } from 'main/helpers/functionUtils';
+import { KR_ARRAY_MAX_LENGTH } from 'main/helpers/contants';
+import { ACTIONCREATORS } from 'main/helpers/enum';
 
-import { Button, Container, TextField, Title } from '../../elements/index';
+import { IKeyResult } from 'main/store/protocol';
 
-const mapStateToProps = (state: { datas: IOkr }) => ({
-  datas: state.datas.objective,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchAddNewKr(newKr: IKeyResult[]) {
-    const action = addNewKR(newKr);
-    dispatch(action);
-  },
-  dispatchNewKrName(KrArray: IKeyResult[], newKrName: string, index: number) {
-    const action = getNewKrName(KrArray, newKrName, index);
-    dispatch(action);
-  },
-});
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
+import {
+  Button,
+  CreateKrButton,
+  Container,
+  TextField,
+  Title,
+} from 'main/elements';
 
 const Keyresults: React.FC<PropsFromRedux> = ({
   datas,
   dispatchAddNewKr,
-  dispatchNewKrName,
+  dispatchNewKrInfo,
 }) => {
   const history = useHistory();
 
@@ -38,8 +28,9 @@ const Keyresults: React.FC<PropsFromRedux> = ({
     history.push('/details');
   };
 
-  const verifyEmptyDatas = () =>
-    datas.kr.map((d) => d.name === '').some((verify) => verify === true);
+  const prevStep = () => {
+    history.push('/');
+  };
 
   return (
     <>
@@ -47,22 +38,40 @@ const Keyresults: React.FC<PropsFromRedux> = ({
         <Title>How do you want to achieve this goal?</Title>
         {datas.kr?.map((input: IKeyResult, index: number) => (
           <TextField
-            placeholder={`type the key result ${index + 1}`}
-            onChange={(e) => dispatchNewKrName(datas.kr, e.target.value, index)}
+            required
+            label={`Key Result ${index + 1}`}
+            name="name"
+            onChange={(e) =>
+              dispatchNewKrInfo(
+                datas.kr,
+                e.target.value,
+                index,
+                ACTIONCREATORS.NEW_KR_NAME,
+                e.target.name,
+              )
+            }
           />
         ))}
-        <div className="wrapper__buttons">
-          <Button
-            type="button"
-            onClick={() => dispatchAddNewKr(datas.kr)}
-            disabled={datas.kr.length > KR_ARRAY_MAX_LENGTH}
-          >
-            create new key result
+
+        <CreateKrButton
+          className="create-button"
+          type="button"
+          onClick={() => dispatchAddNewKr(datas.kr)}
+          disabled={datas.kr.length > KR_ARRAY_MAX_LENGTH}
+        >
+          <i className="fas fa-plus" />
+        </CreateKrButton>
+
+        <div className="button-container">
+          <Button className="next-step" type="button" onClick={prevStep}>
+            <i className="fas fa-long-arrow-alt-left" />
+            &nbsp;prev step
           </Button>
           <Button
+            className="next-step"
             type="button"
             onClick={nextStep}
-            disabled={verifyEmptyDatas()}
+            disabled={verifyEmptyDatas(datas)}
           >
             next step&nbsp;
             <i className="fas fa-long-arrow-alt-right" />

@@ -1,97 +1,113 @@
 /* eslint-disable react/jsx-curly-newline */
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Dispatch } from 'redux';
 
-import {
-  getNewKrAtt,
-  getNewKrCalc,
-  getNewKrInformation,
-  getNewKrTarget,
-} from 'main/store/actions/datas';
-import { IKeyResult, IOkr } from 'main/store/protocol';
-import { Button, Container, TextField, Title } from '../../elements';
+import { Button, Container, TextField, Title } from 'main/elements';
 
-const mapStateToProps = (state: { datas: IOkr }) => ({
-  datas: state.datas.objective,
-});
+import { ACTIONCREATORS } from 'main/helpers/enum';
+import { connector, PropsFromRedux } from 'main/helpers/connector';
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchNewKrCalc(KrArray: IKeyResult[], newKrCalc: string, index: number) {
-    const action = getNewKrCalc(KrArray, newKrCalc, index);
-    dispatch(action);
-  },
-  dispatchNewKrInfo(KrArray: IKeyResult[], newKrInfo: string, index: number) {
-    const action = getNewKrInformation(KrArray, newKrInfo, index);
-    dispatch(action);
-  },
-  dispatchNewKrAtt(KrArray: IKeyResult[], newKrAtt: string, index: number) {
-    const action = getNewKrAtt(KrArray, newKrAtt, index);
-    dispatch(action);
-  },
-  dispatchNewKrTarget(
-    KrArray: IKeyResult[],
-    newKrTarget: string,
-    index: number,
-  ) {
-    const action = getNewKrTarget(KrArray, newKrTarget, index);
-    dispatch(action);
-  },
-});
-const connector = connect(mapStateToProps, mapDispatchToProps);
+import { IKeyResult } from 'main/store/protocol';
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-const Details: React.FC<PropsFromRedux> = ({
-  datas,
-  dispatchNewKrCalc,
-  dispatchNewKrAtt,
-  dispatchNewKrInfo,
-  dispatchNewKrTarget,
-}) => {
+const Details: React.FC<PropsFromRedux> = ({ datas, dispatchNewKrInfo }) => {
   const history = useHistory();
 
   const nextStep = () => {
-    history.push('/details');
+    history.push('/dashboard');
+  };
+
+  const prevStep = () => {
+    history.push('/descriptions');
   };
 
   return (
     <>
       <Container>
-        {datas.kr?.map((krDatas: IKeyResult, index: number) => (
-          <div className="wrapper">
-            <Title>{krDatas.name}</Title>
-            <br />
-            <TextField
-              placeholder="how are you going to calculate this key result?"
-              onChange={(e) =>
-                dispatchNewKrCalc(datas.kr, e.target.value, index)
-              }
-            />
-            <TextField
-              placeholder="what is the source of information?"
-              onChange={(e) =>
-                dispatchNewKrInfo(datas.kr, e.target.value, index)
-              }
-            />
-            <TextField
-              placeholder="what frequence do you wanna att this key result?"
-              onChange={(e) =>
-                dispatchNewKrAtt(datas.kr, e.target.value, index)
-              }
-            />
-            <TextField
-              placeholder="what is the target?"
-              onChange={(e) =>
-                dispatchNewKrTarget(datas.kr, e.target.value, index)
-              }
-            />
-          </div>
-        ))}
-        <Button type="button" onClick={nextStep}>
-          next step
-        </Button>
+        <div className="details-container">
+          {datas.kr?.map((krDatas: IKeyResult, index: number) => (
+            <div key={krDatas.name} className="wrapper">
+              <div className="details-title">
+                <Title>{krDatas.name}</Title>
+              </div>
+              <br />
+              <div className="wrapper__content">
+                <TextField
+                  required
+                  color="#F1E3D3"
+                  label="How it is calculated"
+                  name="howitscalculated"
+                  onChange={(e) =>
+                    dispatchNewKrInfo(
+                      datas.kr,
+                      e.target.value,
+                      index,
+                      ACTIONCREATORS.NEW_KR_HOWITSCALCULATED,
+                      e.target.name,
+                    )
+                  }
+                />
+                <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Information"
+                  name="information"
+                  onChange={(e) =>
+                    dispatchNewKrInfo(
+                      datas.kr,
+                      e.target.value,
+                      index,
+                      ACTIONCREATORS.NEW_KR_INFORMATION,
+                      e.target.name,
+                    )
+                  }
+                />
+              </div>
+
+              <div className="wrapper__content">
+                <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Frequence of attualization"
+                  name="att"
+                  onChange={(e) =>
+                    dispatchNewKrInfo(
+                      datas.kr,
+                      e.target.value,
+                      index,
+                      ACTIONCREATORS.NEW_KR_ATT,
+                      e.target.name,
+                    )
+                  }
+                />
+                <TextField
+                  required
+                  color="#F1E3D3"
+                  label="Target"
+                  name="target"
+                  onChange={(e) =>
+                    dispatchNewKrInfo(
+                      datas.kr,
+                      e.target.value,
+                      index,
+                      ACTIONCREATORS.NEW_KR_TARGET,
+                      e.target.name,
+                    )
+                  }
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="button-container">
+          <Button className="next-step" type="button" onClick={prevStep}>
+            <i className="fas fa-long-arrow-alt-left" />
+            &nbsp;prev step
+          </Button>
+          <Button className="next-step" type="button" onClick={nextStep}>
+            next step&nbsp;
+            <i className="fas fa-long-arrow-alt-right" />
+          </Button>
+        </div>
       </Container>
     </>
   );
